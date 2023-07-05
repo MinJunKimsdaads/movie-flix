@@ -15,11 +15,7 @@ function Nav(){
     ]
     return (
         <div>
-            {navOption.map((e)=>{
-                return(
-                    <div>${e.name}</div>
-                )
-            })}
+            
         </div>
     )
 }
