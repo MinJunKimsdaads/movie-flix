@@ -12,7 +12,7 @@ function App() {
       {/* <Loading></Loading> */}
       <Routes>
         <Route path={`/:menu?`} element={<ListPage></ListPage>}></Route>
-        <Route path={`/viewer:category?`} element={<Viewer></Viewer>}></Route>
+        <Route path={`/viewer/category?`} element={<Viewer></Viewer>}></Route>
       </Routes>
     </div>
   );
