@@ -1,11 +1,15 @@
-import Nav from "./Nav";
-import Search from "./Search";
-import Result from "./Result";
-import List from "./List";
+import Nav from "../component/Nav";
+import Search from "../component/Search";
+import Result from "../component/Result";
+import List from "../component/List";
 import styles from "../style/Template.module.css";
 
-function Template(){
-    return (
+import { useParams } from "react-router-dom";
+
+function ListPage(){
+    const {menu} = useParams();
+    
+    return(
         <div className={styles.templateBox}>
             <div className={styles.navBox}>
                 <Nav></Nav>
@@ -23,4 +27,4 @@ function Template(){
     )
 }
 
-export default Template;
+export default ListPage;
