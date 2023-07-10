@@ -4,10 +4,12 @@ import Result from "../component/Result";
 import List from "../component/List";
 import styles from "../style/Template.module.css";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function ListPage(){
     const {menu} = useParams();
-    
+    const test =  useSelector((state) => state);
+    console.log(test);
     
     return(
         <div className={styles.templateBox}>
