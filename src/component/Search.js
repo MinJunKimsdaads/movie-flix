@@ -11,7 +11,7 @@ function Search(){
         <div className={styles.searchBox}>
             <input value={keyword} onChange={onChange}></input>
             <span>
-                <Link to={`/keyword:${keyword}?`}>검색</Link>
+                <Link to={`/${keyword}?`}>검색</Link>
             </span>
         </div>
     )

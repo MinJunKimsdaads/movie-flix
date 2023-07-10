@@ -20,7 +20,6 @@ useEffect(()=>{
 
 useEffect(()=>{
     fetch1(); //종별 fetch
-    fetch2(); //list fetch
 },[])
 
 useEffect(()=>{
