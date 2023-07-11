@@ -1,17 +1,31 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../style/Search.module.css";
+import { useSelector, useDispatch } from "react-redux";
+
 
 function Search(){
+    const test =  useSelector((state) => state);
+    const dispatch = useDispatch();
     const [keyword, setKeyword] = useState('');
     const onChange = (e) => {
         setKeyword(e.target.value);
+    }
+    const test1 = () => {
+        return{
+            type:'test1'
+        }
+    }
+    const onClick = () => {
+        dispatch(test1());
+        console.log(test);
     }
     return (
         <div className={styles.searchBox}>
             <input value={keyword} onChange={onChange}></input>
             <span>
-                <Link to={`/${keyword}?`}>검색</Link>
+                <span onClick={onClick}>test</span>
+                <Link to={`/${keyword}?`}>검색{test}</Link>
             </span>
         </div>
     )
