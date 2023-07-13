@@ -5,10 +5,9 @@ import Loading from './component/Loading';
 import ListPage from './page/ListPage';
 import Viewer from './component/Viewer';
 import { Provider } from 'react-redux';
-import store from './store/Store';
+import {store} from './store/Store';
 
 function App() {
-  
   return (
     <Provider store={store}>
       <div className="App">

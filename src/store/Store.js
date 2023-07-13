@@ -1,5 +1,30 @@
 import { useEffect } from "react";
 import { createStore } from "redux";
+import axios from "axios";
+
+const totalState = {
+    option1 : '최신',
+    option2 : ['공포','액션'],
+    option3 : 'keyword',
+}
+
+const firstFetchList = async(state) => { //처음 리스트 출력 
+    try{
+        console.log(state);
+        const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.React_APP_TMDB_API_KEY}&language=en-US&page=1`,);
+    }catch(e){
+        console.log(e);
+    }
+}
+
+const fetchList = async(state) => { //그 다음 리스트 출력
+    try{
+        console.log(state);
+        const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.React_APP_TMDB_API_KEY}&language=en-US&page=1`,);
+    }catch(e){
+        console.log(e);
+    }
+}
 
 const reducer = (state = 1, action) => {
     switch(action.type){
@@ -14,7 +39,7 @@ const reducer = (state = 1, action) => {
 
 const store = createStore(reducer);
 
-export default store;
+export {store, firstFetchList, fetchList};
 
 /////////예시임/////////////
 // const 장르 = [
@@ -28,11 +53,6 @@ export default store;
 // const fetchList = () => {
     
 // }
-
-// useEffect(()=>{
-//     fetchGenre(); //장르 fetch
-//     fetchList(); //영화 리스트 ㅇ
-// },[])
 
 // useEffect(()=>{
 //     fetch1(); //종별 fetch
