@@ -1,5 +1,7 @@
 import styles from "../style/Nav.module.css";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { genresList } from "../store/Store";
 
 function Nav(){
     const navMenu = [
@@ -27,6 +29,12 @@ function Nav(){
             code:'n3',
         },
     ]
+
+    useEffect(()=>{
+        genresList();
+    },[])
+
+    
 
     return (
         <div>
