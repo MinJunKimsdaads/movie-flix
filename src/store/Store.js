@@ -8,10 +8,11 @@ const totalState = {
     option3 : 'keyword',
 }
 
-const genresList = async() => {
+const genresList = async(arr) => {
     try{
-        const response = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.React_APP_TMDB_API_KEY}&language=ko-KR`,);
-        console.log(response.data);
+        const response = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.React_APP_TMDB_API_KEY}&language=ko-KR`);
+        const test = response.data.genres;
+        return test;
     }catch(e){
         console.log(e);
     }
