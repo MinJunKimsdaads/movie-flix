@@ -1,17 +1,29 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Item from "./Item";
 import { firstFetchList, fetchList } from "../store/Store";
-function List({menu}){
-    // useEffect(()=>{
-    //     firstFetchList(menu);
-    // },[]);
+function List(){
+    const {menu} = useParams();
+    const [list, setList] = useState([]);
+    useEffect(()=>{
+        if(!menu){
+            firstFetchList(menu).then((result)=>{
+                 
+            })
+        }
+    },[]);
 
-    // useEffect(()=>{
-    //     fetchList(menu);
-    // },[menu]);
+    useEffect(()=>{
+        if(menu){
+            fetchList(menu).then((result)=>{
+    
+            })
+        }
+    },[menu]);
 
     return (
         <div>
-
+            {list.map(()=>{return (<div></div>)})}
         </div>
     )
 }

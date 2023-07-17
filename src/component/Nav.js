@@ -1,8 +1,10 @@
 import styles from "../style/Nav.module.css";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { genresList } from "../store/Store";
 
 function Nav(){
+    const [genre, setGenre] = useState([]);
     const navMenu = [
         {
             name:'최신순',
@@ -14,27 +16,18 @@ function Nav(){
         },
     ]
 
-    const navOption = [
-        {
-            name:'예술',
-            code:'n1',
-        },
-        {
-            name:'공포',
-            code:'n2',
-        },
-        {
-            name:'액션',
-            code:'n3',
-        },
-    ]
+    useEffect(()=>{
+        genresList().then((result)=>{
+            setGenre(result);  
+        })
+    },[]);
 
     return (
         <div>
             {navMenu.map(e => <div key={e.code}><Link to={`/${e.code}`}>{e.name}</Link></div>)}
             <div>카테고리</div>
             <div>
-                {navOption.map(e => <div key={e.code}><Link to={`/viewer/${e.code}`}>{e.name}</Link></div>)}
+                {genre.map(e => <div key={e.id}>{e.name}</div>)}
             </div>
         </div>
     )
