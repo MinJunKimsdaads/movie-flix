@@ -8,7 +8,7 @@ function List(){
     useEffect(()=>{
         if(!menu){
             firstFetchList(menu).then((result)=>{
-                 
+                setList(result);
             })
         }
     },[]);
@@ -16,14 +16,14 @@ function List(){
     useEffect(()=>{
         if(menu){
             fetchList(menu).then((result)=>{
-    
+                setList(result);
             })
         }
     },[menu]);
 
     return (
         <div>
-            {list.map(()=>{return (<div></div>)})}
+            {list.map((e)=>{return (<Item key={e.id} name={e.title}></Item>)})}
         </div>
     )
 }
