@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import axios from "axios";
+import { act } from "react-dom/test-utils";
 
 const totalState = [
     {
@@ -45,17 +46,55 @@ const fetchList = async(state) => { //그 다음 리스트 출력
     }
 }
 
+const selectGenre = (genre) => {
+    return {
+        type: 'addGenre',
+        genre: genre,
+    }
+}
+
+////// 페이지네이션 state //////
 const reducer = (state = 1, action) => {
     switch(action.type){
-        case 'totalCategory':
-        case 'test2':
+        case 'prev':
+            return state - 1;
+        case 'next':
+            return state + 1;
+        default:
+            return state;
+    }
+}
+
+////// 장르 state //////
+const reducer2 = (state = [], action)=>{
+    switch(action.type){
+        case 'addGenre':
+            return [...state,action.genre];
+        case 'deleteGenre':
             return state - 1;
         default:
             return state;
     }
 }
 
-const store = createStore(reducer);
+////// 키워드 state //////
+const reducerKeword = (state = '', action) => {
+    switch(action.type){
+        case 'addKeyword':
+            return state + 1;
+        case 'deleteKeyword':
+            return state - 1;
+        default:
+            return state;
+    }
+}
+
+const reducers = combineReducers({
+    reducer : reducer,
+    reducer2 : reducer2,
+})
+
+const store = createStore(reducers);
 
 
-export {store, firstFetchList, fetchList, genresList};
+export {store, firstFetchList, fetchList, genresList, selectGenre};

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 
 function Search(){
-    const test =  useSelector((state) => state);
+    const test =  useSelector((state) => state.reducer1);
     const dispatch = useDispatch();
     const [keyword, setKeyword] = useState('');
     const onChange = (e) => {
@@ -13,7 +13,7 @@ function Search(){
     }
     const test1 = () => {
         return{
-            type:'test1'
+            type:'xxx'
         }
     }
     const onClick = () => {
