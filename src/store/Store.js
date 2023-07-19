@@ -53,6 +53,13 @@ const selectGenre = (genre) => {
     }
 }
 
+const unselectGenre = (genre) => {
+    return {
+        type: 'deleteGenre',
+        genre: genre,
+    }
+}
+
 ////// 페이지네이션 state //////
 const reducer = (state = 1, action) => {
     switch(action.type){
@@ -71,7 +78,7 @@ const reducer2 = (state = [], action)=>{
         case 'addGenre':
             return [...state,action.genre];
         case 'deleteGenre':
-            return state - 1;
+            return state.filter(e => e !== action.genre);
         default:
             return state;
     }
@@ -97,4 +104,4 @@ const reducers = combineReducers({
 const store = createStore(reducers);
 
 
-export {store, firstFetchList, fetchList, genresList, selectGenre};
+export {store, firstFetchList, fetchList, genresList, selectGenre, unselectGenre};
