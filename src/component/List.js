@@ -9,26 +9,36 @@ function List(){
     const [list, setList] = useState([]);
 
     const page = useSelector((state) => state.reducer);
+    const selectedGenre = useSelector((state) => state.reducer2);
     const limit = 5;
     const [resultPage, setResultPage] = useState(0);
 
     useEffect(()=>{
         if(!menu){
-            firstFetchList(menu, page).then((result)=>{
-                setList(result);
-                setResultPage(result.page);
+            firstFetchList(page).then((result)=>{
+                if(selectedGenre.length > 0){
+                    let newResult = [];
+                    result.forEach((e) => {
+                        if(e.genre_ids.filter(x => selectedGenre.includes(x)).length > 0){
+                            newResult.push(e);
+                            return;
+                        }
+                    });
+                    setList(newResult);
+                }else{
+                    setList(result);
+                }
             })
         }
-    },[]);
+    },[selectedGenre]);
 
     useEffect(()=>{
         if(menu){
             fetchList(menu, page).then((result)=>{
                 setList(result);
-                setResultPage(result.page);
             })
         }
-    },[menu,page]);
+    },[menu,page,selectedGenre]);
 
     return (
         <div>

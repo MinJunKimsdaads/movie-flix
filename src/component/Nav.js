@@ -12,11 +12,15 @@ function Nav(){
     
     const navMenu = [
         {
-            name:'최신순',
-            code:'latest',
+            name:'현재 상영 중인 영화',
+            code:'now_playing',
         },
         {
-            name:'인기순',
+            name:'개봉 예정 영화',
+            code:'upcoming',
+        },
+        {
+            name:'인기 영화',
             code:'popular',
         },
     ]
@@ -35,12 +39,16 @@ function Nav(){
         })
     },[]);
 
+    useEffect(()=>{
+        console.log(genreArr)
+    },[genreArr]);
+
     return (
         <div>
             {navMenu.map(e => <div key={e.code}><Link to={`/${e.code}`}>{e.name}</Link></div>)}
             <div>카테고리</div>
             <div>
-                {genre.map((e) => {if(genreArr.indexOf(`${Number(e.id)}`) > -1){return(<div id={e.id} key={e.id} onClick={removeGenre}>{e.name}선택</div>)}else{return(<div id={e.id} key={e.id} onClick={addGenre}>{e.name}</div>)};})}
+                {genre.map((e) => {if(genreArr.indexOf(Number(e.id)) > -1){return(<div id={e.id} key={e.id} onClick={removeGenre}>{e.name} {e.id} 선택</div>)}else{return(<div id={e.id} key={e.id} onClick={addGenre}>{e.name} {e.id}</div>)};})}
             </div>
         </div>
     )

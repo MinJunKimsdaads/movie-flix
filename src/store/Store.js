@@ -28,9 +28,10 @@ const genresList = async(menu, page) => {
     }
 }
 
-const firstFetchList = async(menu, page) => { //처음 리스트 출력 
+const firstFetchList = async(page) => { //처음 리스트 출력 
     try{
-        const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=45c6a13c9f39865d3a3e9d48c9989352&language=ko-KR&page=${page}`,);
+        const response = await axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=45c6a13c9f39865d3a3e9d48c9989352&language=ko-KR`,);
+        // console.log(response);
         return response.data.results;
     }catch(e){
         console.log(e);
@@ -39,7 +40,6 @@ const firstFetchList = async(menu, page) => { //처음 리스트 출력
 
 const fetchList = async(menu, page) => { //그 다음 리스트 출력
     try{
-        
         const response = await axios.get(`https://api.themoviedb.org/3/movie/${menu}?api_key=45c6a13c9f39865d3a3e9d48c9989352&language=ko-KR&page=${page}`,);
         return response.data.results;
     }catch(e){
@@ -78,9 +78,9 @@ const reducer = (state = 1, action) => {
 const reducer2 = (state = [], action)=>{
     switch(action.type){
         case 'addGenre':
-            return [...state,action.genre];
+            return [...state,Number(action.genre)];
         case 'deleteGenre':
-            return state.filter(e => e !== action.genre);
+            return state.filter(e => e !== Number(action.genre));
         default:
             return state;
     }
