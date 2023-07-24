@@ -81,7 +81,7 @@ const moveToEnd = (result) => {
     }
 }
 
-const moveToPrev = (result) => {
+const moveToPrev = () => {
     return {
         type:'prev',
     }
@@ -90,6 +90,14 @@ const moveToPrev = (result) => {
 const moveToNext = () => {
     return {
         type:'next',
+        
+    }
+}
+
+const moveToPage = (num) => {
+    return{
+        type:'num',
+        result:num,
     }
 }
 
@@ -143,4 +151,4 @@ const reducers = combineReducers({
 const store = createStore(reducers);
 
 
-export {store, firstFetchList, fetchList, genresList, selectGenre, unselectGenre, moveToFirst, moveToEnd, moveToNext, moveToPrev};
+export {store, firstFetchList, fetchList, genresList, selectGenre, unselectGenre, moveToFirst, moveToEnd, moveToNext, moveToPrev, moveToPage};
