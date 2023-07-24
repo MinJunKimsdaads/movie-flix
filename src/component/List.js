@@ -3,14 +3,15 @@ import { useParams } from "react-router-dom";
 import Item from "./Item";
 import { firstFetchList, fetchList } from "../store/Store";
 import { useSelector } from "react-redux";
+import PageNation from "./PageNation";
+
 
 function List(){
     const {menu} = useParams();
     const [list, setList] = useState([]);
-
     const page = useSelector((state) => state.reducer);
     const selectedGenre = useSelector((state) => state.reducer2);
-    const limit = 5;
+    const limit = 20;
     const [resultPage, setResultPage] = useState(0);
 
     useEffect(()=>{
@@ -42,14 +43,8 @@ function List(){
 
     return (
         <div>
-            {list.map((e)=>{return (<Item key={e.id} name={e.title}></Item>)})}
-            <div>
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-            </div>
+            {list.map((e, index)=>{if(index >= (page - 1)*limit && index <= page*limit -1){return (<Item key={e.id} name={e.title}></Item>)}})}
+            <PageNation page={page} limit={limit} total={Math.ceil(list.length/limit)}></PageNation>
         </div>
     )
 }
