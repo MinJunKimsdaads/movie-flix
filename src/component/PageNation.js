@@ -33,7 +33,7 @@ function PageNation({page, limit, total}){
         <div>
             {page > 1 ? <span onClick={first}>처음</span>:null}
             {page > 1 ? <span onClick={prev}>이전</span>:null}
-            {blockArr.map((e)=>{return(<span key={e}>{e}</span>)})}
+            {blockArr.map((e)=>{return(<span key={e} >{e}</span>)})}
             {total > page ? <span onClick={next}>다음</span>:null}
             {total > page ? <span onClick={end}>끝</span>:null}
         </div>
