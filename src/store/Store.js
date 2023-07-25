@@ -12,27 +12,20 @@ const genresList = async() => {
     }
 }
 
-const firstFetchList = async(page) => { //처음 리스트 출력 
+const fetchList = async(menu) => { //그 다음 리스트 출력
     try{
-        const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=45c6a13c9f39865d3a3e9d48c9989352&language=ko-KR`;
+        const url = `https://api.themoviedb.org/3/movie/${menu ? menu:'now_playing'}?api_key=45c6a13c9f39865d3a3e9d48c9989352&language=ko-KR`;
         const response = await axios.get(url,);
-        const totalPage = response.data.total_pages;
+        let totalPage = response.data.total_pages;
+        if(totalPage > 500){
+            totalPage = 500;
+        }
         let totalResultArr = [];
-        
         for(let i=1;i<=totalPage;i++){
             let newResponse = await axios.get(url+`&page=${i}`,);
             totalResultArr.push(...newResponse.data.results);
         }
         return totalResultArr;
-    }catch(e){
-        console.log(e);
-    }
-}
-
-const fetchList = async(menu, page) => { //그 다음 리스트 출력
-    try{
-        const response = await axios.get(`https://api.themoviedb.org/3/movie/${menu}?api_key=45c6a13c9f39865d3a3e9d48c9989352&language=ko-KR&page=${page}`,);
-        return response.data.results;
     }catch(e){
         console.log(e);
     }
@@ -99,7 +92,8 @@ const insertKeyword = (keyword) => {
 }
 ///keyword///
 
-////// 페이지네이션 state //////
+///리듀서///
+/// 페이지네이션 state ///
 const reducer = (state = 1, action) => {
     switch(action.type){
         case 'prev':
@@ -146,6 +140,7 @@ const reducers = combineReducers({
 })
 
 const store = createStore(reducers);
+///리듀서///
 
 
-export {store, firstFetchList, fetchList, genresList, selectGenre, unselectGenre, moveToFirst, moveToEnd, moveToNext, moveToPrev, moveToPage, insertKeyword};
+export {store, fetchList, genresList, selectGenre, unselectGenre, moveToFirst, moveToEnd, moveToNext, moveToPrev, moveToPage, insertKeyword};
