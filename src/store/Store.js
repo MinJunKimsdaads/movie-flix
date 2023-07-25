@@ -1,24 +1,8 @@
-import { useEffect } from "react";
 import { createStore, combineReducers } from "redux";
 import axios from "axios";
-import { act } from "react-dom/test-utils";
 
-const totalState = [
-    {
-        menu:'',
-    },
-    {
-        category:[],
-    },
-    {
-        keyword:'',
-    },
-    {
-        totalCate:[],
-    }
-]
-
-const genresList = async(menu, page) => {
+///fetch///
+const genresList = async() => {
     try{
         const response = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=45c6a13c9f39865d3a3e9d48c9989352&language=ko-KR`);
         const data = response.data.genres;
@@ -53,7 +37,9 @@ const fetchList = async(menu, page) => { //그 다음 리스트 출력
         console.log(e);
     }
 }
+///fetch///
 
+///genre///
 const selectGenre = (genre) => {
     return {
         type: 'addGenre',
@@ -67,7 +53,9 @@ const unselectGenre = (genre) => {
         genre: genre,
     }
 }
+///genre///
 
+///pagenation///
 const moveToFirst = () => {
     return {
         type:'first',
@@ -100,6 +88,16 @@ const moveToPage = (num) => {
         result:num,
     }
 }
+///pagenation///
+
+///keyword///
+const insertKeyword = (keyword) => {
+    return {
+        type: 'addKeyword',
+        keyword: keyword,
+    }
+}
+///keyword///
 
 ////// 페이지네이션 state //////
 const reducer = (state = 1, action) => {
@@ -135,9 +133,7 @@ const reducer2 = (state = [], action)=>{
 const reducerKeword = (state = '', action) => {
     switch(action.type){
         case 'addKeyword':
-            return state + 1;
-        case 'deleteKeyword':
-            return state - 1;
+            return action.keyword;
         default:
             return state;
     }
@@ -146,9 +142,10 @@ const reducerKeword = (state = '', action) => {
 const reducers = combineReducers({
     reducer : reducer,
     reducer2 : reducer2,
+    reducer3 : reducerKeword,
 })
 
 const store = createStore(reducers);
 
 
-export {store, firstFetchList, fetchList, genresList, selectGenre, unselectGenre, moveToFirst, moveToEnd, moveToNext, moveToPrev, moveToPage};
+export {store, firstFetchList, fetchList, genresList, selectGenre, unselectGenre, moveToFirst, moveToEnd, moveToNext, moveToPrev, moveToPage, insertKeyword};

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import Item from "./Item";
 import { firstFetchList, fetchList } from "../store/Store";
-import { useSelector } from "react-redux";
 import PageNation from "./PageNation";
 
 
@@ -12,7 +12,7 @@ function List(){
     const page = useSelector((state) => state.reducer);
     const selectedGenre = useSelector((state) => state.reducer2);
     const limit = 20;
-    const [resultPage, setResultPage] = useState(0);
+    // const [resultPage, setResultPage] = useState(0);
 
     useEffect(()=>{
         if(!menu){
@@ -30,11 +30,7 @@ function List(){
                     setList(result);
                 }
             })
-        }
-    },[selectedGenre]);
-
-    useEffect(()=>{
-        if(menu){
+        }else{
             fetchList(menu, page).then((result)=>{
                 setList(result);
             })
@@ -43,7 +39,8 @@ function List(){
 
     return (
         <div>
-            {list.map((e, index)=>{if(index >= (page - 1)*limit && index <= page*limit -1){return (<Item key={e.id} name={e.title}></Item>)}})}
+            {/* {list.map((e, index)=>{if(index >= (page - 1)*limit && index <= page*limit -1) return <Item key={e.id} name={e.title}></Item>})} */}
+            {list.filter((e, index)=> index >= (page - 1)*limit && index <= page*limit -1).map((e)=>{return <Item key={e.id} name={e.title}></Item>})}
             <PageNation page={page} limit={limit} total={Math.ceil(list.length/limit)}></PageNation>
         </div>
     )

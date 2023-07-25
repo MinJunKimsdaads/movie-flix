@@ -1,9 +1,9 @@
-import styles from "../style/Nav.module.css";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { genresList } from "../store/Store";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { genresList } from "../store/Store";
 import { selectGenre, unselectGenre } from "../store/Store";
+// import styles from "../style/Nav.module.css";
 
 function Nav(){
     const [genre, setGenre] = useState([]);
@@ -38,10 +38,6 @@ function Nav(){
             setGenre(result);
         })
     },[]);
-
-    // useEffect(()=>{
-    //     console.log(genreArr)
-    // },[genreArr]);
 
     return (
         <div>
