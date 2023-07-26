@@ -133,10 +133,23 @@ const reducerKeword = (state = '', action) => {
     }
 }
 
+///// 로딩 state //////
+const reducerLoading = (state = null, action) => {
+    switch(action.type){
+        case 'open':
+            return 'open';
+        case 'close':
+            return 'close';
+        default:
+            return state;
+    }
+}
+
 const reducers = combineReducers({
     reducer : reducer,
     reducer2 : reducer2,
     reducer3 : reducerKeword,
+    reducer4 : reducerLoading,
 })
 
 const store = createStore(reducers);
