@@ -18,7 +18,7 @@ const fetchList = async(menu) => { //그 다음 리스트 출력
         const response = await axios.get(url,);
         let totalPage = response.data.total_pages;
         if(totalPage > 500){
-            totalPage = 500;
+            totalPage = 200;
         }
         let totalResultArr = [];
         for(let i=1;i<=totalPage;i++){
@@ -133,23 +133,10 @@ const reducerKeword = (state = '', action) => {
     }
 }
 
-///// 로딩 state //////
-const reducerLoading = (state = null, action) => {
-    switch(action.type){
-        case 'open':
-            return 'open';
-        case 'close':
-            return 'close';
-        default:
-            return state;
-    }
-}
-
 const reducers = combineReducers({
     reducer : reducer,
     reducer2 : reducer2,
     reducer3 : reducerKeword,
-    reducer4 : reducerLoading,
 })
 
 const store = createStore(reducers);

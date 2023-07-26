@@ -2,7 +2,7 @@ import "../style/loading.css";
 function Loading(){
     return (
         <div id="container">
-            <div className="netflixintro" letter="N">
+            <div className="netflixintro" letter="F">
                 <div className="helper-1">
                     <div className="effect-brush">
                     <span className="fur-31"></span>
