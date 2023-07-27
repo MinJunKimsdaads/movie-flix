@@ -12,6 +12,15 @@ const genresList = async() => {
     }
 }
 
+// const testReactQuery = () => {
+//     const res =  useQuery(['key'], genresList,{
+//         staleTime: 5000, // 5초
+//         cacheTime: Infinity, // 제한 없음
+//     });
+//     console.log(res);
+// }
+
+
 const fetchList = async(menu) => { //그 다음 리스트 출력
     try{
         const url = `https://api.themoviedb.org/3/movie/${menu ? menu:'now_playing'}?api_key=45c6a13c9f39865d3a3e9d48c9989352&language=ko-KR`;

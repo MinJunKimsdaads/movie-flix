@@ -1,12 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { genresList } from "../store/Store";
 import { selectGenre, unselectGenre } from "../store/Store";
 // import styles from "../style/Nav.module.css";
 
 function Nav(){
-    const [genre, setGenre] = useState([]);
     const genreArr = useSelector((state) => state.reducer2);
     const dispatch = useDispatch();
     
@@ -33,21 +32,21 @@ function Nav(){
         dispatch(unselectGenre(e.target.id));
     }
 
-    useEffect(()=>{
-        genresList().then((result)=>{
-            setGenre(result);
-        })
-    },[]);
+    const {status, data} =  useQuery(['genre'], genresList,{
+        staleTime: Infinity,
+    });
 
-    return (
-        <div>
-            {navMenu.map(e => <div key={e.code}><Link to={`/${e.code}`}>{e.name}</Link></div>)}
-            <div>카테고리</div>
+    if(status === 'success'){
+        return (
             <div>
-                {genre.map((e) => {if(genreArr.indexOf(Number(e.id)) > -1){return(<div id={e.id} key={e.id} onClick={removeGenre}>{e.name}</div>)}else{return(<div id={e.id} key={e.id} onClick={addGenre}>{e.name}</div>)};})}
+                {navMenu.map(e => <div key={e.code}><Link to={`/${e.code}`}>{e.name}</Link></div>)}
+                <div>카테고리</div>
+                <div>
+                    {status === 'success' ? data.map((e) => {if(genreArr.indexOf(Number(e.id)) > -1){return(<div id={e.id} key={e.id} onClick={removeGenre}>{e.name}</div>)}else{return(<div id={e.id} key={e.id} onClick={addGenre}>{e.name}</div>)};}) : null}
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default Nav;
