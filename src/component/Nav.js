@@ -32,7 +32,7 @@ function Nav(){
         dispatch(unselectGenre(e.target.id));
     }
 
-    const {status, data} =  useQuery(['genre'], genresList,{
+    const {status, data} =  useQuery(['genre'], ()=>genresList(),{
         staleTime: Infinity,
     });
 
