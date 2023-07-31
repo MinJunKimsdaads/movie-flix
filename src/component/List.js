@@ -17,32 +17,10 @@ function List(){
     const limit = 20;
 
     const [loading, setLoading] = useState(true);
-    
-    // useEffect(()=>{ 
-    //     fetchList(menu).then((result)=>{
-    //         if(selectedGenre.length > 0){
-    //             let newResult = [];
-    //             result.forEach((e) => {
-    //                 if(e.genre_ids.filter(x => selectedGenre.includes(x)).length > 0){
-    //                     newResult.push(e);
-    //                     return;
-    //                 }
-    //             });
-    //             setList(newResult);
-    //         }else{
-    //             setList(result);
-    //         }
-    //         setTimeout(()=>{
-    //             setLoading(false);
-    //         },3000);
-    //     })
-    // },[menu,page,selectedGenre,keyword]);
 
-    const {status, data} =  useQuery([menu,keyword], ()=>fetchList(menu,keyword),{
+    const {status, data} =  useQuery([menu,keyword,selectedGenre], ()=>fetchList(menu,keyword,selectedGenre),{
         staleTime: Infinity,
     });
-
-    console.log(status);
 
     if(status === 'success'){
         return(
@@ -56,15 +34,6 @@ function List(){
             <Loading></Loading>
         </div>
     }
-
-    // return (
-    //     <div>
-    //         {loading ? <Loading></Loading>:
-    //         list.filter((e, index)=> index >= (page - 1)*limit && index <= page*limit -1).map((e)=>{return <Item key={e.id} name={e.title}></Item>})
-    //         }
-    //         {!loading ? <PageNation page={page} limit={limit} total={Math.ceil(list.length/limit)}></PageNation>:null}
-    //     </div>
-    // )
 }
 
 export default List;
