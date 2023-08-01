@@ -26,7 +26,7 @@ function List(){
         return(
             <div>
                 {data.filter((e, index)=> index >= (page - 1)*limit && index <= page*limit -1).map((e)=>{return <Item key={e.id} name={e.title}></Item>})}
-                <PageNation page={page} limit={limit} total={Math.ceil(data.length/limit)}></PageNation>
+                <PageNation page={page} limit={limit} totalPage={Math.ceil(data.length/limit)}></PageNation>
             </div>
         )
     }else{

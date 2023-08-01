@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { genresList } from "../store/Store";
 import { selectGenre, unselectGenre } from "../store/Store";
-// import styles from "../style/Nav.module.css";
+import styles from "../style/Nav.module.css";
 
 function Nav(){
     const genreArr = useSelector((state) => state.reducer2);
@@ -42,7 +42,7 @@ function Nav(){
                 {navMenu.map(e => <div key={e.code}><Link to={`/${e.code}`}>{e.name}</Link></div>)}
                 <div>카테고리</div>
                 <div>
-                    {status === 'success' ? data.map((e) => {if(genreArr.indexOf(Number(e.id)) > -1){return(<div id={e.id} key={e.id} onClick={removeGenre}>{e.name}</div>)}else{return(<div id={e.id} key={e.id} onClick={addGenre}>{e.name}</div>)};}) : null}
+                    {status === 'success' ? data.map((e) => {if(genreArr.indexOf(Number(e.id)) > -1){return(<div id={e.id} key={e.id} onClick={removeGenre} className={styles.seletedGenre}>{e.name}</div>)}else{return(<div id={e.id} key={e.id} onClick={addGenre} className={styles.genre}>{e.name}</div>)};}) : null}
                 </div>
             </div>
         )
