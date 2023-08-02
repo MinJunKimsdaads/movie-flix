@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useSelector} from "react-redux";
 import { useQuery } from "react-query";
 import { useEffect, useState } from "react";
@@ -25,7 +25,7 @@ function List(){
     if(status === 'success'){
         return(
             <div>
-                {data.filter((e, index)=> index >= (page - 1)*limit && index <= page*limit -1).map((e)=>{return <Item key={e.id} name={e.title}></Item>})}
+                {data.filter((e, index)=> index >= (page - 1)*limit && index <= page*limit -1).map((e)=>{return <Link key={e.id} to={`/viewer/${e.id}`}><Item name={e.title}></Item></Link>})}
                 <PageNation page={page} limit={limit} totalPage={Math.ceil(data.length/limit)}></PageNation>
             </div>
         )

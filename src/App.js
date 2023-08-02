@@ -11,7 +11,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path={`/:menu?`} element={<ListPage></ListPage>}></Route>
-          <Route path={`/viewer/category?`} element={<Viewer></Viewer>}></Route>
+          <Route path={`/viewer/:id?`} element={<Viewer></Viewer>}></Route>
         </Routes>
       </div>
     </Provider>
