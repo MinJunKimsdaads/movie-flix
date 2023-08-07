@@ -35,9 +35,20 @@ const fetchList = async(menu,keyword,genre) => { //그 다음 리스트 출력
         }else{
             totalResultArr = totalResultArr.filter((e)=>e.backdrop_path !== null);
         }
+        console.log(totalResultArr);
         return totalResultArr;
     }catch(e){
         console.log(e);
+    }
+}
+
+const fetchMovie = async(id) => {
+    try{
+        const url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=45c6a13c9f39865d3a3e9d48c9989352&language=ko-KR`;
+        const response = await axios.get(url);
+        console.log(response);
+    }catch(e){
+
     }
 }
 ///fetch///
@@ -153,4 +164,4 @@ const store = createStore(reducers);
 ///리듀서///
 
 
-export {store, fetchList, genresList, selectGenre, unselectGenre, moveToFirst, moveToEnd, moveToNext, moveToPrev, moveToPage, insertKeyword};
+export {store, fetchList, genresList, selectGenre, unselectGenre, moveToFirst, moveToEnd, moveToNext, moveToPrev, moveToPage, insertKeyword, fetchMovie};
