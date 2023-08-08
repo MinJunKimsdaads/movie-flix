@@ -154,10 +154,22 @@ const reducerKeword = (state = '', action) => {
     }
 }
 
+const reducerLoading = (state = false, action) => {
+    switch(action.type){
+        case 'openLoading':
+            return false;
+        case 'closeLoading':
+            return true;
+        default:
+            return state;
+    }
+}
+
 const reducers = combineReducers({
     reducer : reducer,
     reducer2 : reducer2,
     reducer3 : reducerKeword,
+    reducer4 : reducerLoading,
 })
 
 const store = createStore(reducers);
