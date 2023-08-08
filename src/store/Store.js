@@ -44,7 +44,7 @@ const fetchList = async(menu,keyword,genre) => { //그 다음 리스트 출력
 
 const fetchMovie = async(id) => {
     try{
-        const url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=45c6a13c9f39865d3a3e9d48c9989352&language=ko-KR`;
+        const url = `https://api.themoviedb.org/3/movie/${id}/external_ids?api_key=45c6a13c9f39865d3a3e9d48c9989352&language=ko-KR`;
         const response = await axios.get(url);
         console.log(response);
     }catch(e){
