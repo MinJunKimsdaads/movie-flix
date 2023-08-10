@@ -2,7 +2,7 @@
 1. 제목 https://api.themoviedb.org/3/movie/${id}
 2. 로고 https://api.themoviedb.org/3/movie/${id}
 3. 이미지 https://api.themoviedb.org/3/movie/${id}
-4. 개봉년도 https://api.themoviedb.org/3/movie/${id}
+4. 개봉일 https://api.themoviedb.org/3/movie/${id}
 5. 나이 -> 없음
 6. 런닝타임 https://api.themoviedb.org/3/movie/${id}
 5. 장르 https://api.themoviedb.org/3/movie/${id}

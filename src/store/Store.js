@@ -35,7 +35,6 @@ const fetchList = async(menu,keyword,genre) => { //그 다음 리스트 출력
         }else{
             totalResultArr = totalResultArr.filter((e)=>e.backdrop_path !== null);
         }
-        console.log(totalResultArr);
         return totalResultArr;
     }catch(e){
         console.log(e);
@@ -44,9 +43,20 @@ const fetchList = async(menu,keyword,genre) => { //그 다음 리스트 출력
 
 const fetchMovie = async(id) => {
     try{
-        const url = `https://api.themoviedb.org/3/movie/${id}/external_ids?api_key=45c6a13c9f39865d3a3e9d48c9989352&language=ko-KR`;
+        const url = `https://api.themoviedb.org/3/movie/${id}?api_key=45c6a13c9f39865d3a3e9d48c9989352&language=ko-KR`;
+        const urlCredit = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=45c6a13c9f39865d3a3e9d48c9989352&language=ko-KR`;
         const response = await axios.get(url);
-        console.log(response);
+        const responseCredit = await axios.get(urlCredit);
+        const movieData = {
+            title:response.data.title,//제목
+            image:response.data.backdrop_path,//이미지
+            release:response.data.release_date,//개봉일
+            runningTime:response.data.runtime,//런닝타임
+            genres:response.data.genres,//장르
+            overview:response.data.overview,//오버뷰
+            cast:responseCredit.data.cast,//주연
+        }
+        return movieData;
     }catch(e){
 
     }
