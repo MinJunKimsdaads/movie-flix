@@ -1,7 +1,7 @@
 import "../style/loading2.css";
 function Loading2(){
     return(
-        <div id="loader" class="nfLoader"></div>
+        <div id="loader" className="nfLoader"></div>
     )
 }
 

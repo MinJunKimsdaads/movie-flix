@@ -1,3 +1,23 @@
-.selectedPageNumber {
-    color: red;
+.pageBox {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
+
+.pageBox > span{
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.pageBtn {
+    color: #fafafa;
+    font-weight: 500;
+}
+.selectedPageNumber {
+    color: #737373;
+    font-weight: bold;
+}
+

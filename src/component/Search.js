@@ -23,9 +23,7 @@ function Search(){
     return (
         <div className={styles.searchBox}>
             <input value={keyword} onChange={onChange} onKeyPress={onKeyPress}></input>
-            <span>
-                <span onClick={insert}>검색</span>
-            </span>
+            <span onClick={insert}>검색</span>
         </div>
     )
 }

@@ -7,7 +7,7 @@ import { fetchList } from "../store/Store";
 import PageNation from "./PageNation";
 import Loading from "./Loading";
 import Loading2 from "./Loading2";
-
+import styles from "../style/List.module.css";
 
 function List(){
     const {menu} = useParams(); //메뉴
@@ -43,7 +43,9 @@ function List(){
         if(status === 'success'){
             return(
                 <div>
-                    {data.filter((e, index)=> index >= (page - 1)*limit && index <= page*limit -1).map((e)=>{return <Link key={e.id} to={`/viewer/${e.id}`}><Item name={e.title}></Item></Link>})}
+                    <div className={styles.itemBox}>
+                        {data.filter((e, index)=> index >= (page - 1)*limit && index <= page*limit -1).map((e)=>{return <Link key={e.id} to={`/viewer/${e.id}`}><Item name={e.title} img={e.poster_path}></Item></Link>})}
+                    </div>
                     <PageNation page={page} limit={limit} totalPage={Math.ceil(data.length/limit)}></PageNation>
                 </div>
             )

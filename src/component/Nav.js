@@ -38,13 +38,13 @@ function Nav(){
 
     if(status === 'success'){
         return (
-            <div>
-                {navMenu.map(e => <div key={e.code}><Link to={`/${e.code}`}>{e.name}</Link></div>)}
-                <div>카테고리</div>
-                <div>
-                    {status === 'success' ? data.map((e) => {if(genreArr.indexOf(Number(e.id)) > -1){return(<div id={e.id} key={e.id} onClick={removeGenre} className={styles.seletedGenre}>{e.name}</div>)}else{return(<div id={e.id} key={e.id} onClick={addGenre} className={styles.genre}>{e.name}</div>)};}) : null}
+            <>
+                {navMenu.map(e => <div key={e.code} className={styles.navMenu}><span><Link to={`/${e.code}`}>{e.name}</Link></span></div>)}
+                <div className={styles.category}>카테고리</div>
+                <div className={styles.categoryBtnBox}>
+                    {status === 'success' ? data.map((e) => {if(genreArr.indexOf(Number(e.id)) > -1){return(<div key={e.id}><span id={e.id} key={e.id} onClick={removeGenre} className={styles.seletedGenre}>{e.name}</span></div>)}else{return(<div key={e.id}><span id={e.id} key={e.id} onClick={addGenre} className={styles.genre}>{e.name}</span></div>)};}) : null}
                 </div>
-            </div>
+            </>
         )
     }
 }

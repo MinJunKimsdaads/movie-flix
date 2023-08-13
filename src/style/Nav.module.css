@@ -1,3 +1,35 @@
+.navMenu {
+    margin-top: 20px;
+    padding-left: 70px;
+}
+
+.navMenu a {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.category {
+    font-size: 20px;
+    color: rgba(255,255,255,0.7);
+    padding-left: 70px;
+    margin-top: 15px;
+}
+
+.categoryBtnBox > div {
+    display: flex;
+    margin-top: 10px;
+    padding-left: 70px;
+}
+
 .seletedGenre{
-    color: red;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.genre {
+    cursor: pointer;
+    color: rgba(255,255,255,0.7);
 }

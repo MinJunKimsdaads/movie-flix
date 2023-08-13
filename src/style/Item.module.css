@@ -1,0 +1,8 @@
+.item {
+    margin-bottom: 40px;
+    margin-right: 37px;
+}
+
+.item:nth-child(5n+0){
+    margin-right: 0;
+}
