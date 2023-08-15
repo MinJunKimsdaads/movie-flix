@@ -1,5 +1,11 @@
-.nmtitleWrapper{
-    margin-top: 56px;
+.appMountPoint{
+    height: 100vh;
+}
+
+.appMountPoint > div {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .nmtitleSection{
@@ -70,12 +76,16 @@
     margin-top: 16px;
 }
 
-.titleInfoMetadataItem {
+.titleInfoMetadataItem, .titleInfoMetadataItem2 {
     color: #a3a3a3;
     display: inline-block;
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
+}
+
+.titleInfoMetadataItem2 {
+    margin-right: 5px;
 }
 
 .infoSpacer {

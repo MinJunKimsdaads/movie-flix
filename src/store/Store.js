@@ -47,7 +47,6 @@ const fetchMovie = async(id) => {
         const urlCredit = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=45c6a13c9f39865d3a3e9d48c9989352&language=ko-KR`;
         const response = await axios.get(url);
         const responseCredit = await axios.get(urlCredit);
-        console.log(response);
         const movieData = {
             title:response.data.title,//제목
             image:response.data.backdrop_path,//이미지
@@ -56,6 +55,7 @@ const fetchMovie = async(id) => {
             genres:response.data.genres,//장르
             overview:response.data.overview,//오버뷰
             cast:responseCredit.data.cast,//주연
+            crew:responseCredit.data.crew,//크리에이터
         }
         return movieData;
     }catch(e){

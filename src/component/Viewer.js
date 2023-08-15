@@ -11,9 +11,8 @@ function Viewer(){
     })
 
     if(status === 'success'){
-        console.log(data);
         return(
-            <div id="appMountPoint">
+            <div className={styles.appMountPoint}>
                 <div>
                     <div className={styles.nmtitleWrapper}>
                         <section className={styles.nmtitleSection}>
@@ -21,35 +20,28 @@ function Viewer(){
                                 <div className={styles.infoContainer}>
                                     <div className={styles.detailsContainer}>
                                         <div className={styles.titleInfo}>
-                                            <h1 className={styles.titleTitle}>더 글로리</h1>
+                                            <h1 className={styles.titleTitle}>{data.title}</h1>
                                             <div className={styles.titleInfoMetadataWrapper}>
-                                                <span className={styles.titleInfoMetadataItem}>2022</span>
-                                                <span className={styles.infoSpacer}> | </span>
-                                                <span className={styles.titleInfoMetadataItem}>
-                                                    <span className={styles.maturityRating}>
-                                                        <span className={styles.screenReaderText}>관람등급:</span>
-                                                        <span className={styles.maturityNumber}>청불 </span>
-                                                    </span>
-                                                </span>
+                                                <span className={styles.titleInfoMetadataItem}>{data.release}</span>
                                                 <span className={styles.infoSpacer}> | </span>
                                                 <span className={styles.titleInfoMetadataItem}>
                                                     <span className={styles.duration}>
-                                                        <span className={styles.testDurStr}>시즌 1개</span>
+                                                        <span className={styles.testDurStr}>{`${(data.runningTime-data.runningTime%60)/60}시간 ${data.runningTime%60}분`}</span>
                                                     </span>
                                                 </span>
                                                 <span className={styles.infoSpacer}> | </span>
-                                                <a className={styles.titleInfoMetadataItem} href="https://www.netflix.com/kr/browse/genre/637977">드라마 장르</a>
+                                                {data.genres.map((e)=>{return(<span className={styles.titleInfoMetadataItem2} key={e.id}>{e.name}</span>)})}
                                             </div>
                                             <div className={styles.titleInfoSynopsisTalent}>
-                                                <div className={styles.titleInfoSynopsis}>고등학교 시절, 끔찍한 괴롭힘에 시달렸던 여자. 많은 시간이 흐른 후, 가해자들을 응징하기 위해 그녀가 치밀한 복수를 감행한다.</div>
+                                                <div className={styles.titleInfoSynopsis}>{data.overview}</div>
                                                 <div className={styles.titleInfoTalent}>
                                                     <div className={styles.titleDataInfoItem}>
                                                         <span className={styles.titleDataInfoItemLabel}>주연:</span>
-                                                        <span className={styles.titleDataInfoItemList}>송혜교,이도현,임지연</span>
+                                                        <span className={styles.titleDataInfoItemList}>{`${data.cast[0].name}, ${data.cast[1].name}, ${data.cast[2].name}`}</span>
                                                     </div>
                                                     <div className={styles.titleDataInfoItem}>
                                                         <span className={styles.titleDataInfoItemLabel}>크리에이터:</span>
-                                                        <span className={styles.titleDataInfoItemList}>김은숙,안길호</span>
+                                                        <span className={styles.titleDataInfoItemList}>{`${data.crew[0].name}, ${data.crew[1].name}`}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -57,7 +49,7 @@ function Viewer(){
                                     </div>
                                 </div>
                                 <div className={styles.heroImageContainer}>
-                                    <img className={styles.heroImage} src={`https://image.tmdb.org/t/p/w500/${data.image}`}></img>
+                                    <img className={styles.heroImage} src={`https://image.tmdb.org/t/p/w500/${data.image}`} alt={`$(data.title)img`}></img>
                                 </div>
                             </div>
                         </section>
