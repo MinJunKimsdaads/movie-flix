@@ -8,4 +8,8 @@ $netflixGray: #ddd;
     &:nth-child(5n+0){
         margin-right: 0;
     }
+
+    &:hover{
+        filter: brightness(50%);
+    }
 }
