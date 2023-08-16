@@ -150,6 +150,8 @@ const reducer2 = (state = [], action)=>{
             return [...state,Number(action.genre)];
         case 'deleteGenre':
             return state.filter(e => e !== Number(action.genre));
+        case 'resetGenre':
+            return [];
         default:
             return state;
     }

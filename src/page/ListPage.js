@@ -3,7 +3,7 @@ import Nav from "../component/Nav";
 import Search from "../component/Search";
 import Result from "../component/Result";
 import List from "../component/List";
-import styles from "../style/Template.module.css";
+import styles from "../style/Template.module.scss";
 
 function ListPage(){
     const {menu} = useParams();

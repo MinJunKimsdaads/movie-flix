@@ -1,4 +1,4 @@
-import "../style/loading.css";
+import "../style/loading.scss";
 function Loading(){
     return (
         <div id="container">

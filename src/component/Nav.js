@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { genresList } from "../store/Store";
 import { selectGenre, unselectGenre } from "../store/Store";
-import styles from "../style/Nav.module.css";
+import styles from "../style/Nav.module.scss";
 
 function Nav(){
     const genreArr = useSelector((state) => state.reducer2);

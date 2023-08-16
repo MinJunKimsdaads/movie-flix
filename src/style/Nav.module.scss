@@ -1,12 +1,15 @@
+$netflixBlack: #141414;
+$netflixGray: #ddd;
+
 .navMenu {
     margin-top: 20px;
     padding-left: 70px;
-}
 
-.navMenu a {
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
+    a {
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+    }
 }
 
 .category {
@@ -22,11 +25,13 @@
     padding-top: 10px;
 }
 
-.categoryBtnBox > div {
-    display: flex;
-    margin-top: 15px;
-    min-width: 30%;
-    padding-left: 50px;
+.categoryBtnBox {
+    > div{
+        display: flex;
+        margin-top: 15px;
+        min-width: 30%;
+        padding-left: 50px;
+    }
 }
 
 .seletedGenre{

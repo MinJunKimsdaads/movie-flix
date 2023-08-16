@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { insertKeyword } from "../store/Store";
-import styles from "../style/Search.module.css";
+import styles from "../style/Search.module.scss";
 
 function Search(){
     const dispatch = useDispatch();

@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import {Routes, Route} from 'react-router-dom';
 import ListPage from './page/ListPage';
 import Viewer from './component/Viewer';
