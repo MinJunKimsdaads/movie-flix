@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchMovie } from "../store/Store";
+import { fetchMovie, selectGenre } from "../store/Store";
 import Loading2 from "./Loading2";
 import styles from "../style/Viewer.module.scss";
 
@@ -14,11 +14,11 @@ function Viewer(){
 
     const dispatch = useDispatch();
 
-    const resetGenre = (e) => {
-        console.log(e.target.value);
+    const setrResetGenre = (e) => {
         dispatch({
-            type:'resetGerne',
+            type:'resetGenre',
         });
+        dispatch(selectGenre(e.target.id));
     }
 
     if(status === 'success'){
@@ -41,7 +41,7 @@ function Viewer(){
                                                     </span>
                                                 </span>
                                                 <span className={styles.infoSpacer}> | </span>
-                                                {data.genres.map((e)=>{return(<Link onClick={resetGenre} to={`../`} className={styles.titleInfoMetadataItem2} key={e.id}><span>{e.name}</span></Link>)})}
+                                                {data.genres.map((e)=>{return(<Link onClick={setrResetGenre} to={`../`} className={styles.titleInfoMetadataItem2} key={e.id}><span id={e.id}>{e.name}</span></Link>)})}
                                             </div>
                                             <div className={styles.titleInfoSynopsisTalent}>
                                                 <div className={styles.titleInfoSynopsis}>{data.overview}</div>
